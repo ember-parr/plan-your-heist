@@ -1,6 +1,6 @@
 # Plan Your Heist
 
-## A C# Exercise
+#### A C# Exercise
 ## The Story
 You are poor. After much, deep consideration, it occurs to you that if you were to get some money, you wouldn't be so poor.
 
