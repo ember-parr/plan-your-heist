@@ -51,7 +51,7 @@ namespace PlanYourHeist
             Console.WriteLine($"Success! You have added {teamSize} players to your team:");
             foreach (TeamMember member in TeamRoster)
             {
-                Console.WriteLine($"\t - {member.Name}");
+                Console.WriteLine($"\t - {member.Name}  \t  Rank: {member.CourageFactor}  \t  Skill: {member.SkillLevel}");
             }
 
         }
