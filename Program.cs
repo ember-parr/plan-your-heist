@@ -60,29 +60,8 @@ namespace PlanYourHeist
 
             int BankDifficultyLevel = 100 + HeistLuckValue;
             int TeamDifficultyLevel = TeamRoster.Sum(player => player.SkillLevel);
-
-            Console.Write($@"
-/   /                                     /   /
-| O |                                     | O |
-|   |- - - - - - - - - - - - - - - - - - -|   |
-| O |                                     | O |
-|   |         H E I S T                   |   |
-| O |              R E P O R T            | O |
-|   |                                     |   |
-| O |                                     | O |
-|   |  Bank Skill Level: {BankDifficultyLevel}    
-| O |                                     | O |
-|   |                                     |   |
-| O |  Team's Skill Level: {TeamDifficultyLevel}                
-|   |                                     |   |
-| O |                                     | O |
-|   |                                     |   |
-| O |                                     | O |
-|   |                                     |   |
-| O |- - - - - - - - - - - - - - - - - - -| O |
-|   |                                     |   |
-
-");
+            Report DifficultyReport = new Report(BankDifficultyLevel, TeamDifficultyLevel);
+            Console.WriteLine($"{DifficultyReport.PrintReport()}");
 
 
 
@@ -91,15 +70,11 @@ namespace PlanYourHeist
 
             if (BankDifficultyLevel > TeamDifficultyLevel)
             {
-                Console.WriteLine($"LOOSER! ");
-                Console.WriteLine($"Your teams score: {TeamDifficultyLevel}");
-                Console.WriteLine($"Bank's score: {BankDifficultyLevel}");
+                Console.WriteLine($"FAIL! Your entire team is going to jail. buh-bye! ");
             }
             else
             {
-                Console.WriteLine($"WINNER WINNER CHICKEN DINNER! ");
-                Console.WriteLine($"Your teams score: {TeamDifficultyLevel}");
-                Console.WriteLine($"Bank's score: {BankDifficultyLevel}");
+                Console.WriteLine($"WINNER WINNER CHICKEN DINNER! Dolla Dolla Bills, Y'all! ");
             }
 
         }
