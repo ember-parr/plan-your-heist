@@ -8,10 +8,15 @@ namespace PlanYourHeist
         public int ReportBank { get; set; }
         public int ReportTeam { get; set; }
 
-        public Report(int bank, int team)
+        public int TrialRuns { get; set; }
+        public int ThisRun { get; set; }
+
+        public Report(int bank, int team, int totalRuns, int thisRun)
         {
             ReportBank = bank;
             ReportTeam = team;
+            TrialRuns = totalRuns;
+            ThisRun = thisRun;
         }
 
         public string PrintReport()
@@ -23,7 +28,7 @@ namespace PlanYourHeist
 | O |                                     | O |
 |   |         H E I S T                   |   |
 | O |              R E P O R T            | O |
-|   |                                     |   |
+|   |         [{ThisRun} of {TrialRuns}]                      
 | O |                                     | O |
 |   |  Bank Skill Level: {ReportBank}    
 | O |                                     | O |

@@ -50,31 +50,34 @@ namespace PlanYourHeist
                 };
             }
             Console.WriteLine($"Success! You have added {teamSize} players to your team:");
+            Console.WriteLine(" ");
+
+            Console.Write("How many trial runs would you like to do today? ");
+            int TrialRuns = int.Parse(Console.ReadLine());
             // foreach (TeamMember member in TeamRoster)
             // {
             //     Console.WriteLine($"\t - {member.Name}  \t  Rank: {member.CourageFactor}  \t  Skill: {member.SkillLevel}");
             // }
 
-            Random r = new Random();
-            int HeistLuckValue = r.Next(-10, 10);
 
-            int BankDifficultyLevel = 100 + HeistLuckValue;
-            int TeamDifficultyLevel = TeamRoster.Sum(player => player.SkillLevel);
-            Report DifficultyReport = new Report(BankDifficultyLevel, TeamDifficultyLevel);
-            Console.WriteLine($"{DifficultyReport.PrintReport()}");
-
-
-
-
-
-
-            if (BankDifficultyLevel > TeamDifficultyLevel)
+            for (int j = 0; j < TrialRuns; j++)
             {
-                Console.WriteLine($"FAIL! Your entire team is going to jail. buh-bye! ");
-            }
-            else
-            {
-                Console.WriteLine($"WINNER WINNER CHICKEN DINNER! Dolla Dolla Bills, Y'all! ");
+                Random r = new Random();
+                int HeistLuckValue = r.Next(-10, 10);
+
+                int BankDifficultyLevel = 100 + HeistLuckValue;
+                int TeamDifficultyLevel = TeamRoster.Sum(player => player.SkillLevel);
+                Report DifficultyReport = new Report(BankDifficultyLevel, TeamDifficultyLevel, TrialRuns, j + 1);
+                Console.WriteLine($"{DifficultyReport.PrintReport()}");
+
+                if (BankDifficultyLevel > TeamDifficultyLevel)
+                {
+                    Console.WriteLine($"FAIL! Your entire team is going to jail. buh-bye! ");
+                }
+                else
+                {
+                    Console.WriteLine($"WINNER WINNER CHICKEN DINNER! Dolla Dolla Bills, Y'all! ");
+                }
             }
 
         }
