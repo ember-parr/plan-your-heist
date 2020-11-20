@@ -55,9 +55,40 @@ namespace PlanYourHeist
             //     Console.WriteLine($"\t - {member.Name}  \t  Rank: {member.CourageFactor}  \t  Skill: {member.SkillLevel}");
             // }
 
+            Random r = new Random();
+            int HeistLuckValue = r.Next(-10, 10);
 
-            int BankDifficultyLevel = 100;
+            int BankDifficultyLevel = 100 + HeistLuckValue;
             int TeamDifficultyLevel = TeamRoster.Sum(player => player.SkillLevel);
+
+            Console.Write($@"
+/   /                                     /   /
+| O |                                     | O |
+|   |- - - - - - - - - - - - - - - - - - -|   |
+| O |                                     | O |
+|   |         H E I S T                   |   |
+| O |              R E P O R T            | O |
+|   |                                     |   |
+| O |                                     | O |
+|   |  Bank Skill Level: {BankDifficultyLevel}    
+| O |                                     | O |
+|   |                                     |   |
+| O |  Team's Skill Level: {TeamDifficultyLevel}                
+|   |                                     |   |
+| O |                                     | O |
+|   |                                     |   |
+| O |                                     | O |
+|   |                                     |   |
+| O |- - - - - - - - - - - - - - - - - - -| O |
+|   |                                     |   |
+
+");
+
+
+
+
+
+
             if (BankDifficultyLevel > TeamDifficultyLevel)
             {
                 Console.WriteLine($"LOOSER! ");
