@@ -19,6 +19,10 @@ namespace PlanYourHeist
             Console.Write("How many players are on your team? ");
             int TeamSize = int.Parse(Console.ReadLine());
             Console.WriteLine(" ");
+            Console.Write("What is your crew's alias?");
+            string CrewAlias = Console.ReadLine();
+            WelcomeToHeist welcome = new WelcomeToHeist(CrewAlias);
+            Console.WriteLine($"{welcome.DisplayWelcomeMessage()}");
             TeamMemberSetup(TeamSize);
         }
 
@@ -42,42 +46,59 @@ namespace PlanYourHeist
 
                     TeamMember Player = new TeamMember(NameResponse, int.Parse(SkillResponse), double.Parse(CourageResponse));
                     TeamRoster.Add(Player);
-                    // Console.WriteLine($"{Player.GetTeamMember()}");
                 }
                 catch (FormatException)
                 {
                     Console.WriteLine("ERROR: Be sure to use correct values when entering a team member. Please Try again.");
                 };
             }
-            Console.WriteLine($"Success! You have added {teamSize} players to your team:");
+            Console.WriteLine($"Success! You have added {teamSize} players to your team");
             Console.WriteLine(" ");
+            Console.Write("What is the bank's anti-heist score? ");
+            int BankScore = int.Parse(Console.ReadLine());
 
             Console.Write("How many trial runs would you like to do today? ");
             int TrialRuns = int.Parse(Console.ReadLine());
-            // foreach (TeamMember member in TeamRoster)
-            // {
-            //     Console.WriteLine($"\t - {member.Name}  \t  Rank: {member.CourageFactor}  \t  Skill: {member.SkillLevel}");
-            // }
 
-
+            int TeamWins = 0;
+            int BankWins = 0;
             for (int j = 0; j < TrialRuns; j++)
             {
                 Random r = new Random();
                 int HeistLuckValue = r.Next(-10, 10);
 
-                int BankDifficultyLevel = 100 + HeistLuckValue;
+                int BankDifficultyLevel = BankScore + HeistLuckValue;
                 int TeamDifficultyLevel = TeamRoster.Sum(player => player.SkillLevel);
-                Report DifficultyReport = new Report(BankDifficultyLevel, TeamDifficultyLevel, TrialRuns, j + 1);
+                TrialReport DifficultyReport = new TrialReport(BankDifficultyLevel, TeamDifficultyLevel, TrialRuns, j + 1);
                 Console.WriteLine($"{DifficultyReport.PrintReport()}");
 
                 if (BankDifficultyLevel > TeamDifficultyLevel)
                 {
+                    BankWins++;
                     Console.WriteLine($"FAIL! Your entire team is going to jail. buh-bye! ");
+                }
+                else if (BankDifficultyLevel < TeamDifficultyLevel)
+                {
+                    TeamWins++;
+                    Console.WriteLine($"WINNER WINNER CHICKEN DINNER! Dolla Dolla Bills, Y'all! ");
                 }
                 else
                 {
-                    Console.WriteLine($"WINNER WINNER CHICKEN DINNER! Dolla Dolla Bills, Y'all! ");
+                    Console.WriteLine("CAT SCRATCH");
                 }
+            }
+
+            if (TeamWins > BankWins)
+            {
+                Console.WriteLine($@"NICELY DONE!");
+            }
+            else if (TeamWins < BankWins)
+            {
+                Console.WriteLine("is this a game to you? START TRAINING!");
+            }
+            else
+            {
+                Console.WriteLine("It's a draw... train harder!");
             }
 
         }

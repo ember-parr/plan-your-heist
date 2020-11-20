@@ -3,7 +3,7 @@ using System;
 
 namespace PlanYourHeist
 {
-    public class Report
+    public class TrialReport
     {
         public int ReportBank { get; set; }
         public int ReportTeam { get; set; }
@@ -11,7 +11,7 @@ namespace PlanYourHeist
         public int TrialRuns { get; set; }
         public int ThisRun { get; set; }
 
-        public Report(int bank, int team, int totalRuns, int thisRun)
+        public TrialReport(int bank, int team, int totalRuns, int thisRun)
         {
             ReportBank = bank;
             ReportTeam = team;
@@ -26,9 +26,9 @@ namespace PlanYourHeist
 | O |                                     | O |
 |   |- - - - - - - - - - - - - - - - - - -|   |
 | O |                                     | O |
-|   |         H E I S T                   |   |
+|   |         T R I A L   R U N           |   |
 | O |              R E P O R T            | O |
-|   |         [{ThisRun} of {TrialRuns}]                      
+|   |                   [{ThisRun} of {TrialRuns}]                      
 | O |                                     | O |
 |   |  Bank Skill Level: {ReportBank}    
 | O |                                     | O |
@@ -40,8 +40,64 @@ namespace PlanYourHeist
 | O |                                     | O |
 |   |                                     |   |
 | O |- - - - - - - - - - - - - - - - - - -| O |
-|   |                                     |   |
-            
+|   |                                     |   |";
+        }
+    }
+
+
+    public class WelcomeToHeist
+    {
+        public string TeamName { get; set; }
+
+        public WelcomeToHeist(string teamName)
+        {
+            TeamName = teamName;
+        }
+
+        public string DisplayWelcomeMessage()
+        {
+            return $@"
+It's up to YOU to plan this heist properly.
+                        .-""""-.
+                       / j      \
+                      :.d;       ;
+                      $$P        :
+           .m._       $$         :
+          dSMMSSSss.__$$b.    __ :
+         :MMSMMSSSMMMSS$$$b  $$P ;
+         SMMMSMMSMMMSSS$$$$     :b
+        dSMMMSMMMMMMSSMM$$$b.dP SSb.
+       dSMMMMMMMMMMSSMMPT$$=-. /TSSSS.
+      :SMMMSMMMMMMMSMMP  `$b_.'  MMMMSS.
+      SMMMMMSMMMMMMMMM \  .'\    :SMMMSSS.
+     dSMSSMMMSMMMMMMMM  \/\_/; .'SSMMMMSSSm
+    dSMMMMSMMSMMMMMMMM    :.;'' :SSMMMMSSMM;
+  .MMSSSSSMSSMMMMMMMM;    :.;   MMSMMMMSMMM;
+ dMSSMMSSSSSSSMMMMMMM;    ;.;   MMMMMMMSMMM
+:MMMSSSSMMMSSP^TMMMMM     ;.;   MMMMMMMMMMM
+MMMSMMMMSSSSP   `MMMM     ;.;   :MMMMMMMMM;
+'TMMMMMMMMMM      TM;    :`.:    MMMMMMMMM;
+   )MMMMMMM;     _/\\    :`.:    :MMMMMMMM
+  d$SS$$$MMMb.  |._\\\   :`.:     MMMMMMMM
+  T$$S$$$$$$$$$$m;O\\\\'-;`.:_.-  MMMMMMM;
+ :$$$$$$$$$$$$$$$b_l./\\ ;`.:    mMMSSMMM;
+ :$$$$$$$$$$$$$$$$$$$./\\;`.:  .$$MSMMMMMM
+  $$$$$$$$$$$$$$$$$$$$. \\`.:.$$$$SMSSSMMM;
+  $$$$$$$$$$$$$$$$$$$$$. \\.:$$$$$SSMMMMMMM
+  :$$$$$$$$$$$$$$$$$$$$$.//.:$$$$SSSSSSSMM;
+  :$$$$$$$$$$$$$$$$$$$$$$.`.:$$SSSSSSSMMMP
+   $$$$$$$$$;'^$J '^$$$$;.`.$$P  `SSSMMMM
+   :$$$$$$$$$       :$$$;.`.P'..   TMMM$$b
+   :$$$$$$$$$;      $$$$;.`/ c^'   d$$$$$S;
+   $$$$$S$$$$;      '^^^:_d$g:___.$$$$$$SSS
+   $$$$SS$$$$;            $$$$$$$$$$$$$$SSS;
+  :$$$SSSS$$$$            : $$$$$$$$$$$$$SSS
+  :$P'TSSSS$$$            ; $$$$$$$$$$$$$SSS;
+  j    `SSSSS$           :  :$$$$$$$$$$$$$SS$
+ :       '^S^'           :   $$$$$$$$$$$$$S$;
+ ;.____.-;'               '--^$$$$$$$$$$$$$P
+ '-....-'  Ready              ''^^T$$$$P' 
+               {TeamName}?
             ";
         }
     }
