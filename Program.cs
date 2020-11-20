@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PlanYourHeist
 {
@@ -49,9 +50,25 @@ namespace PlanYourHeist
                 };
             }
             Console.WriteLine($"Success! You have added {teamSize} players to your team:");
-            foreach (TeamMember member in TeamRoster)
+            // foreach (TeamMember member in TeamRoster)
+            // {
+            //     Console.WriteLine($"\t - {member.Name}  \t  Rank: {member.CourageFactor}  \t  Skill: {member.SkillLevel}");
+            // }
+
+
+            int BankDifficultyLevel = 100;
+            int TeamDifficultyLevel = TeamRoster.Sum(player => player.SkillLevel);
+            if (BankDifficultyLevel > TeamDifficultyLevel)
             {
-                Console.WriteLine($"\t - {member.Name}  \t  Rank: {member.CourageFactor}  \t  Skill: {member.SkillLevel}");
+                Console.WriteLine($"LOOSER! ");
+                Console.WriteLine($"Your teams score: {TeamDifficultyLevel}");
+                Console.WriteLine($"Bank's score: {BankDifficultyLevel}");
+            }
+            else
+            {
+                Console.WriteLine($"WINNER WINNER CHICKEN DINNER! ");
+                Console.WriteLine($"Your teams score: {TeamDifficultyLevel}");
+                Console.WriteLine($"Bank's score: {BankDifficultyLevel}");
             }
 
         }
