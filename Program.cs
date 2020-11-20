@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace PlanYourHeist
 {
@@ -19,10 +20,7 @@ namespace PlanYourHeist
             Console.Write("How many players are on your team? ");
             int TeamSize = int.Parse(Console.ReadLine());
             Console.WriteLine(" ");
-            Console.Write("What is your crew's alias?");
-            string CrewAlias = Console.ReadLine();
-            WelcomeToHeist welcome = new WelcomeToHeist(CrewAlias);
-            Console.WriteLine($"{welcome.DisplayWelcomeMessage()}");
+            
             TeamMemberSetup(TeamSize);
         }
 
@@ -31,6 +29,11 @@ namespace PlanYourHeist
         static void TeamMemberSetup(int teamSize)
         {
             List<TeamMember> TeamRoster = new List<TeamMember>();
+
+            Console.Write("What is your crew's alias? ");
+            string CrewAlias = Console.ReadLine();
+            WelcomeToHeist welcome = new WelcomeToHeist(CrewAlias);
+            Console.WriteLine($"{welcome.DisplayWelcomeMessage()}");
 
             for (int i = 0; i < teamSize; i++)
             {
@@ -62,6 +65,7 @@ namespace PlanYourHeist
 
             int TeamWins = 0;
             int BankWins = 0;
+            
             for (int j = 0; j < TrialRuns; j++)
             {
                 Random r = new Random();
@@ -86,20 +90,19 @@ namespace PlanYourHeist
                 {
                     Console.WriteLine("CAT SCRATCH");
                 }
+                int milliseconds = 2000;
+                Thread.Sleep(milliseconds);
             }
+            Console.WriteLine(" ");
+            Console.WriteLine("--------------------------------------------------------------------------");
+            Console.WriteLine("--------------------------------------------------------------------------");
+            Console.WriteLine($"{CrewAlias} Successfully Completed {TeamWins} out of {TrialRuns} Trial Heists");
+            Console.WriteLine("--------------------------------------------------------------------------");
+            Console.WriteLine("--------------------------------------------------------------------------");
+            Console.WriteLine(" ");
 
-            if (TeamWins > BankWins)
-            {
-                Console.WriteLine($@"NICELY DONE!");
-            }
-            else if (TeamWins < BankWins)
-            {
-                Console.WriteLine("is this a game to you? START TRAINING!");
-            }
-            else
-            {
-                Console.WriteLine("It's a draw... train harder!");
-            }
+            FinalReport endOfGame = new FinalReport(TeamWins, BankWins);
+            Console.WriteLine($"{endOfGame.DisplayMessage()}");
 
         }
     }
